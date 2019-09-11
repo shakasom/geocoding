@@ -1,5 +1,5 @@
 pandas==0.25.1
 matplotlib==3.0.1
-geopandas==0.51
+geopandas==0.5.1
 geopy==1.20.0
 folium==0.9.1
