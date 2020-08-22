@@ -12,7 +12,7 @@ from geopy.extra.rate_limiter import RateLimiter
 import matplotlib.pyplot as plt
 import plotly_express as px 
 
-st.image("geocoding.jpg")
+#st.image("geocoding.jpg")
 
 st.title("Geocoding Application in Python")
 st.markdown("Uppload a CSV File with address columns (Street name & number, Postcode, City)")
