@@ -1,5 +1,7 @@
-# geocoding
-Geocoding tutorial in Python.
+# Geocoding
+
+
+* Geocoding tutorial in Python.
 
 If you want to expiriment the Jupyter notebook of this article, you can use Launch Binder below.
 
@@ -7,6 +9,6 @@ If you want to expiriment the Jupyter notebook of this article, you can use Laun
 
 
 
-# Reverse Geocoding 
+* Reverse Geocoding 
 
 [Google Colab Notebook](https://github.com/shakasom/geocoding/blob/master/ReverseGeocoding.ipynb)
