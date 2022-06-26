@@ -15,6 +15,8 @@ import plotly_express as px
 st.title("Geocoding Application in Python")
 st.markdown("Uppload a CSV File with address columns (Street name & number, Postcode, City)")
 
+
+
 def create_address_col(df):
     st.sidebar.title("Select Address columns")
     st.sidebar.info("You need to select address column (Street name and number), post code and City")
@@ -50,13 +52,11 @@ def display_map(df):
     fig = px.scatter_mapbox(df, lat='latitude', lon='longitude', zoom=10)
     return fig
 
-
 def download_csv(df):
     csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
     href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
     return href
-
 
 
 def main():
@@ -76,27 +76,28 @@ def main():
 
         st.subheader("Choose Address Columns from the Sidebar")
         st.info("Example correct address: Karlaplan 13,115 20,STOCKHOLM, Sweden")
-        
-
-        if st.checkbox("Address Formatted correctly (Example Above)"):
-            df_address = choose_geocode_column(df)
-            st.write(df_address["geocode_col"].head())
-            geocoded_df = geocode(df_address)
-            with st.spinner('Geocoding Hold tight...'):
-                time.sleep(5)
-            st.success('Done!')
-            st.write(geocoded_df.head())
-            st.plotly_chart(display_map(geocoded_df))
+    
+    if st.checkbox("Address Formatted correctly (Example Above)"):
+        df_address = choose_geocode_column(df)
+        st.write("choosing columns...")
+        st.write(df_address["geocode_col"].head())
+        st.write("Starting to Geocode")
+        geocoded_df = geocode(df_address)
+        with st.spinner('Geocoding Hold tight...'):
+            time.sleep(5)
+        st.success('Done!')
+        st.write(geocoded_df.head())
+        st.plotly_chart(display_map(geocoded_df))
             
-            st.markdown(download_csv(geocoded_df), unsafe_allow_html=True)
-        if st.checkbox("Not Correctly Formatted"):
+        st.markdown(download_csv(geocoded_df), unsafe_allow_html=True)
+    
+    if st.checkbox("Not Correctly Formatted"):
             df_address = create_address_col(df)
-            st.write(df_address["geocode_col"].head())
+            st.write(df_address["geocode_col"])
             geocoded_df = geocode(df_address)
             with st.spinner('Geocoding Hold tight...'):
                 time.sleep(5)
             st.success('Done!')
-            st.write(geocoded_df.head())
             st.plotly_chart(display_map(geocoded_df))
             st.markdown(download_csv(geocoded_df), unsafe_allow_html=True)
 
